@@ -3,20 +3,20 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class RobotHardware {
-    //Declare hardware here
-    private  DcMotor leftFrontDrive;
-    private DcMotor righFrontDrive;
-    private DcMotor leftBackDrive;
-    private DcMotor rightBackDrive;
+    //Each object of the class RobotHardware shall have the following variables:
+    public DcMotor[] Wheels = new DcMotor[4];
 
-    //Map the hardware to it's respective specified entry in the driver's hub
-    public void Initialize(HardwareMap hardwareMap) {
-        leftFrontDrive = hardwareMap.get(DcMotor.class, "leftFront");
-        righFrontDrive = hardwareMap.get(DcMotor.class, "rightFront");
-        leftBackDrive = hardwareMap.get(DcMotor.class, "leftBack");
-        rightBackDrive = hardwareMap.get(DcMotor.class, "rightBack");
-
+    /*
+    Each object of the class RobotHardware shall take a HardwareMap object at declaration,
+    and use it to assign these four variables to DcMotor objects.
+     */
+    public RobotHardware(HardwareMap hardwareMap){
+        Wheels[0] = hardwareMap.get(DcMotor.class, "rightFront");
+        Wheels[1] = hardwareMap.get(DcMotor.class, "RightBack");
+        Wheels[2] = hardwareMap.get(DcMotor.class, "leftBack");
+        Wheels[3] = hardwareMap.get(DcMotor.class, "leftFront");
     }
-
 }
