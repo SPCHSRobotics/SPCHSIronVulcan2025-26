@@ -28,7 +28,7 @@ public class Main extends LinearOpMode {
         // Run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             // Call our functions here
-            OmniDriveObject.POV_Driving(gamepad1, RobotHardwareObject.Wheels);
+            OmniDriveObject.POV_Driving(gamepad1, RobotHardwareObject.Wheels, telemetry);
             //Add the "Run Time" string to telemetry and then update all telemetry
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
