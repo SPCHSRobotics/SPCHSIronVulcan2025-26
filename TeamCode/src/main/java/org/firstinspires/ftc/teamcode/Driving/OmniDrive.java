@@ -14,13 +14,13 @@ public class OmniDrive{
         //Get our inputs
         double Axial = gamepad1.left_stick_y;
         double Lateral = gamepad1.left_stick_x;
-        double Yaw = -gamepad1.right_stick_x;
+        double Yaw = gamepad1.right_stick_x;
 
         //Calculate what the power values should be for POV driving
-        double leftFront = Axial+Lateral+Yaw;
-        double rightFront = Axial-Lateral-Yaw;
-        double leftBack = Axial-Lateral+Yaw;
-        double rightBack = Axial+Lateral-Yaw;
+        double leftFront = Axial-Lateral-Yaw;
+        double rightFront = Axial+Lateral+Yaw;
+        double leftBack = Axial+Lateral-Yaw;
+        double rightBack = Axial-Lateral+Yaw;
 
         //Adjust the values so that they are all between -1 and 1
         /*
