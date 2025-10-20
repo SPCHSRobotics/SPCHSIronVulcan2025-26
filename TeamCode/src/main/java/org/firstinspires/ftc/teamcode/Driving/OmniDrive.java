@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Driving;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.RobotHardware;
@@ -45,14 +44,16 @@ public class OmniDrive{
 
 
         //Set the motors to their respective power values
-        telemetry.addData("rightFront: ", rightFront);
-        telemetry.addData("rightBack: ", rightBack);
-        telemetry.addData("leftBack: ", leftBack);
-        telemetry.addData("leftFront: ", leftFront);
-
         Wheels[0].setPower(rightFront);
         Wheels[1].setPower(rightBack);
         Wheels[2].setPower(leftBack);
         Wheels[3].setPower(leftFront);
+
+        /* Per-wheel telemetry:
+        telemetry.addData("rightFront: ", rightFront);
+        telemetry.addData("rightBack: ", rightBack);
+        telemetry.addData("leftBack: ", leftBack);
+        telemetry.addData("leftFront: ", leftFront);
+         */
     }
 }
