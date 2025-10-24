@@ -39,6 +39,9 @@ public class RobotHardware {
         Shooters[0].setDirection(DcMotorSimple.Direction.REVERSE);
         Shooters[2].setDirection(DcMotorSimple.Direction.REVERSE);
 
+        Shooters[0].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Shooters[1].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         Pusher  = hardwareMap.get(Servo.class, "pusher");
 
     }
