@@ -37,6 +37,7 @@ public class RobotHardware {
         Shooters[2] = hardwareMap.get(DcMotor.class, "intake");
 
         Shooters[0].setDirection(DcMotorSimple.Direction.REVERSE);
+        Shooters[1].setDirection(DcMotorSimple.Direction.REVERSE);
         Shooters[2].setDirection(DcMotorSimple.Direction.REVERSE);
 
         Shooters[0].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

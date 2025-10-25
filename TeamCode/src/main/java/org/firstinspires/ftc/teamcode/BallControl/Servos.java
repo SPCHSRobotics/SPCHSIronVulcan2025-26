@@ -10,7 +10,7 @@ public class Servos {
             Pusher.setPosition(0.5);
             telemetry.addLine("Rotating the servo!");
         } else {
-            Pusher.setPosition(0.0);
+            Pusher.setPosition(0.02);
             telemetry.addLine("Setting servo position to 0");
         }
     }

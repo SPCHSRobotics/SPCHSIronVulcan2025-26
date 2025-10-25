@@ -26,7 +26,8 @@ public class Main extends LinearOpMode {
         "(On gamepad 1)\n" +
         "Left Joystick to move\n" +
         "Press the A button (green) to toggle shooters\n" +
-        "Press the B button (red) to toggle intake\n");
+        "Press the B button (red) to toggle intake\n" +
+        "Press the Y button (green) to use the servo\n");
 
         telemetry.update();
         waitForStart();
