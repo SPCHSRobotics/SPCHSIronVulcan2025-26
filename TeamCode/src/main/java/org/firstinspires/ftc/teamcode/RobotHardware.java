@@ -3,13 +3,15 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class RobotHardware {
     //Each object of the class RobotHardware shall have the following variables:
     public DcMotor[] Wheels = new DcMotor[4];
-    public DcMotor[] Shooters = new DcMotor[3];
+    public DcMotor[] Shooters = new DcMotor[4];
+    public Servo Pusher;
 
 
     public RobotHardware(HardwareMap hardwareMap){
@@ -35,6 +37,13 @@ public class RobotHardware {
         Shooters[2] = hardwareMap.get(DcMotor.class, "intake");
 
         Shooters[0].setDirection(DcMotorSimple.Direction.REVERSE);
+        Shooters[1].setDirection(DcMotorSimple.Direction.REVERSE);
         Shooters[2].setDirection(DcMotorSimple.Direction.REVERSE);
+
+        Shooters[0].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Shooters[1].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        Pusher  = hardwareMap.get(Servo.class, "pusher");
+
     }
 }

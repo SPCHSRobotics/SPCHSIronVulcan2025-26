@@ -3,8 +3,10 @@ package org.firstinspires.ftc.teamcode;
 //Importing the libraries needed to run "Main.java"
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.BallControl.Servos;
 import org.firstinspires.ftc.teamcode.BallControl.Shooters;
 import org.firstinspires.ftc.teamcode.Driving.OmniDrive;
 
@@ -24,8 +26,9 @@ public class Main extends LinearOpMode {
         "(On gamepad 1)\n" +
         "Left Joystick to move\n" +
         "Press the A button (green) to toggle shooters\n" +
-        "Press the B button (red) to toggle intake\n");
-        
+        "Press the B button (red) to toggle intake\n" +
+        "Press the Y button (green) to use the servo\n");
+
         telemetry.update();
         waitForStart();
         runtime.reset();
@@ -35,6 +38,7 @@ public class Main extends LinearOpMode {
         //Load our files so that we can use the functions listed therein
         OmniDrive OmniDriveObject = new OmniDrive(RobotHardwareObject);
         Shooters ShootersObject = new Shooters();
+        Servos ServoObject = new Servos();
 
 
         // Run until the end of the match (driver presses STOP)
@@ -42,6 +46,7 @@ public class Main extends LinearOpMode {
             // Call our functions here
             OmniDriveObject.POV_Driving(gamepad1, RobotHardwareObject.Wheels, telemetry);
             ShootersObject.ToggleShootersAndIntake(gamepad1, RobotHardwareObject.Shooters, telemetry);
+            ServoObject.TurnServo(gamepad1, RobotHardwareObject.Pusher, telemetry);
 
             //Add the "Run Time" string to telemetry and then update all telemetry
             telemetry.addData("Status: Running | Run Time: ", runtime.toString());

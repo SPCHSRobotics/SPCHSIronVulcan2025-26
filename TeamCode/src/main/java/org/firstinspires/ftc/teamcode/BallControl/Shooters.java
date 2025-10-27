@@ -21,11 +21,11 @@ public class Shooters {
             boolean shooterStateOn = ((Shooters[0].getPower() + Shooters[1].getPower()) > 0 );
             //The above checks BOTH shooting motors for their power
             if (shooterStateOn){
-                Shooters[0].setPower(0);
-                Shooters[1].setPower(0);
+                Shooters[0].setPower(0.0);
+                Shooters[1].setPower(0.0);
             } else {
-                Shooters[0].setPower(1);
-                Shooters[1].setPower(1);
+                Shooters[0].setPower(0.6);
+                Shooters[1].setPower(0.6/5.;;'');
             }
         }
 
@@ -42,5 +42,17 @@ public class Shooters {
                 Shooters[2].setPower(1);
             }
         }
+
+        boolean buttonInputX = gamepad1.xWasReleased();
+        boolean intakeStateOnReverse = (Shooters[2].getPower() < 0);
+
+        if (buttonInputX){
+            if (intakeStateOnReverse){
+                Shooters[2].setPower(0);
+            } else {
+                Shooters[2].setPower(-1);
+            }
+        }
+
     }
 }
