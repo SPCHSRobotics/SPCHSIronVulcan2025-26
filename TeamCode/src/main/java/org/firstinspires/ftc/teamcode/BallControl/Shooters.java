@@ -24,8 +24,8 @@ public class Shooters {
                 Shooters[0].setPower(0.0);
                 Shooters[1].setPower(0.0);
             } else {
-                Shooters[0].setPower(0.6);
-                Shooters[1].setPower(0.6/5.;;'');
+                Shooters[0].setPower(0.4);
+                Shooters[1].setPower(0.4/5.;;'');
             }
         }
 
