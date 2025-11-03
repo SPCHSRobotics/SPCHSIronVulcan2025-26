@@ -1,19 +1,15 @@
 package org.firstinspires.ftc.teamcode.Driving;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.RobotHardware;
 
 public class OmniDrive{
-    public OmniDrive(RobotHardware RobotHardwareObject){
-        // Right now, this header does nothing.
-    }
-    public void POV_Driving(Gamepad gamepad1, DcMotor[] Wheels, Telemetry telemetry){
-        //Get our inputs
-        double Axial = gamepad1.left_stick_y;
-        double Lateral = gamepad1.left_stick_x;
-        double Yaw = gamepad1.right_stick_x;
+    public void POV_Driving(float[][] Driving, DcMotor[] Wheels, Telemetry telemetry){
+
+        double Lateral = Driving[0][0];
+        double Axial = Driving[0][1];
+        double Yaw = Driving[1][0];
+
 
         //Calculate what the power values should be for POV driving
         double leftFront = Axial-Lateral-Yaw;
