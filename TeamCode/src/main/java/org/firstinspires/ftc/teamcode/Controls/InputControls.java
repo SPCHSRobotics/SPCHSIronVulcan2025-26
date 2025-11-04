@@ -29,30 +29,17 @@ public class InputControls {
 
         if (gamepad1.bWasPressed()) {
             Timer.startTime();
-
-        }else if (gamepad1.b) {
-            telemetry.addData("Button is held for: ", Timer.seconds());
-
-        } else if (gamepad1.bWasReleased()){
-            if (Timer.seconds() >= 2){
-                telemetry.addLine("Long press detected!");
-                if (Intake[0]){
-                    Intake[0] = false;
-                } else {
-                    Intake[0] = true;
-                }
-
-            } else {
-                telemetry.addLine("Short press detected!");
-                if (Intake[1]){
-                    Intake[1] = false;
-                } else {
-                    Intake[1] = true;
-                }
+        } else if (gamepad1.bWasReleased()) {
+            if (Timer.seconds() < 2) {
+                Intake[1] = !Intake[1]; //Toggle direction
+                Timer.reset();
+            } else if (Timer.seconds() >= 2) {
+                Timer.reset();
             }
-            Timer.reset();
-        } else {
-            telemetry.addLine("Isn't pressed!");
+        } else if (gamepad1.b){
+            //Do nothing
+        }  else if (gamepad1.b && Timer.seconds() >= 2) {
+            Intake[0] = !Intake[0]; //Toggle power
         }
     }
 }
