@@ -7,7 +7,7 @@ public class Intake {
     public void ToggleIntake(boolean[] IntakeInput, DcMotor Intake , Telemetry telemetry){
 
         if (IntakeInput[0]){ //If the driver means for the intake to be on
-            int direction = (IntakeInput[1]) ? 1 : -1;
+            int direction = (IntakeInput[1]) ? -1 : 1;
             Intake.setPower(direction*0.8);
             telemetry.addLine("Intake on!");
         } else {

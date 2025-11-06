@@ -5,6 +5,16 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class InputControls {
+    public InputControls(Telemetry telemetry){
+        telemetry.addLine(
+                "\nDrive using the LEFT STICK\n" +
+                        "Rotate using the RIGHT STICK\n" +
+                        "Press A (bottom, green) for shooters\n" +
+                        "Press RIGHT TRIGGER to move servo\n" +
+                        "Press Y (top, yellow) for intake\n" +
+                        "Press B (right, red) to change intake direction"
+        );
+    }
     //God forbid a man tries to use a hashmap
     public float[][] Driving = new float[2][2];
     /*
@@ -14,10 +24,11 @@ public class InputControls {
      */
     public boolean PrimingShooters;
     public boolean FireBall;
-    public boolean Intake[] = new boolean[2];
+    public boolean[] Intake = new boolean[2];
     //Intake[0] = Power
     //Intake[1] = Direction
     ElapsedTime Timer = new ElapsedTime();
+    boolean Startup = false;
     public void Update(Gamepad gamepad1, Telemetry telemetry) {
         Driving[0][0] = gamepad1.left_stick_x;
         Driving[0][1] = gamepad1.left_stick_y;
@@ -26,20 +37,14 @@ public class InputControls {
         PrimingShooters = gamepad1.aWasReleased();
         FireBall = gamepad1.right_trigger > 0.5;
 
+        //We can't have the hold/touch behaviour I wanted because if we do, then the robot
+        //will switch directions every time we go to hold the button.
+        if (gamepad1.yWasReleased()){
+            Intake[0] = !Intake[0];
+        }
 
-        if (gamepad1.bWasPressed()) {
-            Timer.startTime();
-        } else if (gamepad1.bWasReleased()) {
-            if (Timer.seconds() < 2) {
-                Intake[1] = !Intake[1]; //Toggle direction
-                Timer.reset();
-            } else if (Timer.seconds() >= 2) {
-                Timer.reset();
-            }
-        } else if (gamepad1.b){
-            //Do nothing
-        }  else if (gamepad1.b && Timer.seconds() >= 2) {
-            Intake[0] = !Intake[0]; //Toggle power
+        if (gamepad1.bWasReleased()){
+            Intake[1] = !Intake[1];
         }
     }
 }

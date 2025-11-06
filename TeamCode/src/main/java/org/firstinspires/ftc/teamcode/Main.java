@@ -23,15 +23,9 @@ public class Main extends LinearOpMode {
     public void runOpMode() {
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData("Status", "Initialized");
+        //Load our input bindings
+        InputControls InputControlObject = new InputControls(telemetry);
 
-        //Instruction for the offchance our driver is missing
-        telemetry.addLine(
-        "\n__TO CONTROL ROBOT:__\n" +
-        "(On gamepad 1)\n" +
-        "Left Joystick to move\n" +
-        "Press the A button (green) to toggle shooters\n" +
-        "Press the B button (red) to toggle intake\n" +
-        "Press the Y button (green) to use the servo\n");
 
         telemetry.update();
         waitForStart();
@@ -39,8 +33,6 @@ public class Main extends LinearOpMode {
 
         //Initialize Hardware, and assign it to an object
         RobotHardware RobotHardwareObject = new RobotHardware(hardwareMap);
-        //Load our input bindings
-        InputControls InputControlObject = new InputControls();
         //Load our files so that we can use the functions listed therein
         OmniDrive OmniDriveObject = new OmniDrive();
         Shooters ShootersObject = new Shooters();
