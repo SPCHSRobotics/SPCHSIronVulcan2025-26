@@ -9,10 +9,11 @@ public class Intake {
         if (IntakeInput[0]){ //If the driver means for the intake to be on
             int direction = (IntakeInput[1]) ? -1 : 1;
             Intake.setPower(direction*0.8);
-            telemetry.addLine("Intake on!");
         } else {
             Intake.setPower(0);
-            telemetry.addLine("Intake off!");
         }
+
+        String telInDir = (IntakeInput[1]) ? "OUT" : "IN";
+        telemetry.addData("Intake direction: ", telInDir);
     }
 }

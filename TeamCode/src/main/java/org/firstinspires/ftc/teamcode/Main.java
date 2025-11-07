@@ -26,7 +26,6 @@ public class Main extends LinearOpMode {
         //Load our input bindings
         InputControls InputControlObject = new InputControls(telemetry);
 
-
         telemetry.update();
         waitForStart();
         runtime.reset();
@@ -52,6 +51,7 @@ public class Main extends LinearOpMode {
             );
 
             ShootersObject.ToggleShooters(
+                    InputControlObject.ShooterPower,
                     InputControlObject.PrimingShooters,
                     RobotHardwareObject.Shooters,
                     telemetry

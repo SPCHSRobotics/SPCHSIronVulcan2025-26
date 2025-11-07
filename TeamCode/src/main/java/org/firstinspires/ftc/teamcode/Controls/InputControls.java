@@ -10,6 +10,8 @@ public class InputControls {
                 "\nDrive using the LEFT STICK\n" +
                         "Rotate using the RIGHT STICK\n" +
                         "Press A (bottom, green) for shooters\n" +
+                        "Press the DPAD to change shooter speed:\n" +
+                        "Left: slowest | Bottom: Normal | Right: fastest\n" +
                         "Press RIGHT TRIGGER to move servo\n" +
                         "Press Y (top, yellow) for intake\n" +
                         "Press B (right, red) to change intake direction"
@@ -27,6 +29,7 @@ public class InputControls {
     public boolean[] Intake = new boolean[2];
     //Intake[0] = Power
     //Intake[1] = Direction
+    public float ShooterPower = 1; // By default, the power is 1.
     ElapsedTime Timer = new ElapsedTime();
     boolean Startup = false;
     public void Update(Gamepad gamepad1, Telemetry telemetry) {
@@ -34,7 +37,10 @@ public class InputControls {
         Driving[0][1] = gamepad1.left_stick_y;
         Driving[1][0] = gamepad1.right_stick_x;
 
-        PrimingShooters = gamepad1.aWasReleased();
+        if (gamepad1.aWasReleased()){
+            PrimingShooters = !PrimingShooters;
+        }
+
         FireBall = gamepad1.right_trigger > 0.5;
 
         //We can't have the hold/touch behaviour I wanted because if we do, then the robot
@@ -45,6 +51,16 @@ public class InputControls {
 
         if (gamepad1.bWasReleased()){
             Intake[1] = !Intake[1];
+        }
+
+        if (gamepad1.dpadLeftWasReleased()) {
+            ShooterPower = ShooterPower - 0.05f;
+        } else if (gamepad1.dpadDownWasReleased()){
+            ShooterPower = 0.4f;
+        } else if (gamepad1.dpadRightWasReleased()){
+            ShooterPower = ShooterPower + 0.05f;
+        } else if (gamepad1.dpadUpWasReleased()){
+            ShooterPower = 0.6f;
         }
     }
 }
