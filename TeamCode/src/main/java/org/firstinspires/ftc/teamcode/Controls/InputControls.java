@@ -29,17 +29,13 @@ public class InputControls {
     public boolean[] Intake = new boolean[2];
     //Intake[0] = Power
     //Intake[1] = Direction
-    public float ShooterPower = 1; // By default, the power is 1.
+    public float ShooterPower = 0.4f; // By default, the power is 40%.
     ElapsedTime Timer = new ElapsedTime();
     boolean Startup = false;
     public void Update(Gamepad gamepad1, Telemetry telemetry) {
         Driving[0][0] = gamepad1.left_stick_x;
         Driving[0][1] = gamepad1.left_stick_y;
         Driving[1][0] = gamepad1.right_stick_x;
-
-        if (gamepad1.aWasReleased()){
-            PrimingShooters = !PrimingShooters;
-        }
 
         FireBall = gamepad1.right_trigger > 0.5;
 
@@ -54,13 +50,20 @@ public class InputControls {
         }
 
         if (gamepad1.dpadLeftWasReleased()) {
-            ShooterPower = ShooterPower - 0.05f;
+            //ShooterPower = 0.4f;
         } else if (gamepad1.dpadDownWasReleased()){
-            ShooterPower = 0.4f;
+            ShooterPower = 0.45f;
         } else if (gamepad1.dpadRightWasReleased()){
-            ShooterPower = ShooterPower + 0.05f;
+            ShooterPower = 0.5f;
         } else if (gamepad1.dpadUpWasReleased()){
-            ShooterPower = 0.6f;
+            //ShooterPower = 0.55f;
+        }
+
+        if (gamepad1.aWasReleased()){
+            PrimingShooters = !PrimingShooters;
+            if(!PrimingShooters){
+                ShooterPower = 0;
+            }
         }
     }
 }

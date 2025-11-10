@@ -35,7 +35,7 @@ public class RobotTurnsRight extends LinearOpMode {
                 float[][] SimulatedDriving = new float[2][2];
                 SimulatedDriving[0][0] = 0f; //Here for consistency
                 SimulatedDriving[0][1] = -1f; //Move forward
-                SimulatedDriving[1][0] = 0.5f; //Turn right
+                SimulatedDriving[1][0] = 0f; //Turn right
 
                 OmniDriveObject.POV_Driving(
                         SimulatedDriving,
