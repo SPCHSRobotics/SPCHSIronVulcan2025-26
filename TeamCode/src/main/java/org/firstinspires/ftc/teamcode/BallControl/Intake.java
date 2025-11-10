@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.BallControl;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;;
 public class Intake {

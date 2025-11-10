@@ -50,9 +50,8 @@ public class Main extends LinearOpMode {
                     telemetry
             );
 
-            ShootersObject.ToggleShooters(
+            ShootersObject.PowerShooters(
                     InputControlObject.ShooterPower,
-                    InputControlObject.PrimingShooters,
                     RobotHardwareObject.Shooters,
                     telemetry
             );

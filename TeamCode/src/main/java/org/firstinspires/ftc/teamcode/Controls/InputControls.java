@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Controls;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -24,14 +23,11 @@ public class InputControls {
     0 1 | Axial
     1 0 | Yaw
      */
-    public boolean PrimingShooters;
     public boolean FireBall;
     public boolean[] Intake = new boolean[2];
     //Intake[0] = Power
     //Intake[1] = Direction
-    public float ShooterPower = 0.4f; // By default, the power is 40%.
-    ElapsedTime Timer = new ElapsedTime();
-    boolean Startup = false;
+    public float ShooterPower = 0.45f; // By default, the power is 45%.
     public void Update(Gamepad gamepad1, Telemetry telemetry) {
         Driving[0][0] = gamepad1.left_stick_x;
         Driving[0][1] = gamepad1.left_stick_y;
@@ -49,21 +45,15 @@ public class InputControls {
             Intake[1] = !Intake[1];
         }
 
-        if (gamepad1.dpadLeftWasReleased()) {
-            //ShooterPower = 0.4f;
-        } else if (gamepad1.dpadDownWasReleased()){
+
+        if (gamepad1.dpadDownWasReleased()){
             ShooterPower = 0.45f;
-        } else if (gamepad1.dpadRightWasReleased()){
+        } else if (gamepad1.dpadRightWasReleased()) {
             ShooterPower = 0.5f;
-        } else if (gamepad1.dpadUpWasReleased()){
-            //ShooterPower = 0.55f;
         }
 
         if (gamepad1.aWasReleased()){
-            PrimingShooters = !PrimingShooters;
-            if(!PrimingShooters){
-                ShooterPower = 0;
-            }
+            ShooterPower = 0;
         }
     }
 }
