@@ -28,6 +28,7 @@ public class InputControls {
     //Intake[0] = Power
     //Intake[1] = Direction
     public float ShooterPower = 0.45f; // By default, the power is 45%.
+    public boolean ResetHeader;
     public void Update(Gamepad gamepad1, Telemetry telemetry) {
         Driving[0][0] = gamepad1.left_stick_x;
         Driving[0][1] = gamepad1.left_stick_y;
@@ -44,6 +45,8 @@ public class InputControls {
         if (gamepad1.bWasReleased()){
             Intake[1] = !Intake[1];
         }
+
+        ResetHeader = gamepad1.xWasReleased();
 
 
         if (gamepad1.dpadDownWasReleased()){

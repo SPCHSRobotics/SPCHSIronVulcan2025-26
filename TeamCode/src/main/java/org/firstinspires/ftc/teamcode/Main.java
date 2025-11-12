@@ -5,11 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.BallControl.Intake;
 import org.firstinspires.ftc.teamcode.BallControl.Servos;
 import org.firstinspires.ftc.teamcode.BallControl.Shooters;
 import org.firstinspires.ftc.teamcode.Controls.InputControls;
 import org.firstinspires.ftc.teamcode.Driving.OmniDrive;
+import org.firstinspires.ftc.teamcode.HardwareMapping.GyroScope;
 import org.firstinspires.ftc.teamcode.HardwareMapping.RobotHardware;
 
 import java.util.PrimitiveIterator;
@@ -37,6 +39,7 @@ public class Main extends LinearOpMode {
         Shooters ShootersObject = new Shooters();
         Servos ServoObject = new Servos();
         Intake IntakeObject = new Intake();
+        GyroScope GyroScopeObject = new GyroScope();
 
 
         // Run until the end of the match (driver presses STOP)
@@ -46,6 +49,16 @@ public class Main extends LinearOpMode {
 
             OmniDriveObject.POV_Driving(
                     InputControlObject.Driving,
+                    RobotHardwareObject.Wheels,
+                    telemetry
+            );
+
+            OmniDriveObject.Character_Driving(
+                    InputControlObject.Driving,
+                    GyroScopeObject.GetYaw(
+                            InputControlObject.ResetHeader,
+                            RobotHardwareObject.imu,
+                            telemetry),
                     RobotHardwareObject.Wheels,
                     telemetry
             );
@@ -70,6 +83,11 @@ public class Main extends LinearOpMode {
 
             //Add the "Run Time" string to telemetry and then update all telemetry
             telemetry.addData("Status: Running | Run Time: ", runtime.toString());
+            telemetry.addData("IMU Yaw: ", GyroScopeObject.GetYaw(
+                    false,
+                    RobotHardwareObject.imu,
+                    telemetry
+            ));
             telemetry.update();
         }
     }
