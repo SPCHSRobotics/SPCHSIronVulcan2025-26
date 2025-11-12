@@ -19,8 +19,14 @@ public class OmniDrive{
         double leftBack = Axial+Lateral-Yaw;
         double rightBack = Axial-Lateral+Yaw;
 
-        leftFront = Math.cos(Math.toRadians(leftFront) + PI/4);
-        
+        /*  If you graph what powers the robot should set its right front motor to (based off degree,
+         *  going from 0 degrees to 360 degrees) when going right, you'll notice that the graph is
+         *  basically just cos(x + pi/4)
+         */
+
+        //THIS MATH DOES NOT CHECK OUT. THE ROBOT TURNS FROM -180 to 180 DEGREES
+        rightFront = Math.cos(Math.toRadians(rightFront) + PI/4);
+
 
         //Adjust the values so that they are all between -1 and 1
         /*
