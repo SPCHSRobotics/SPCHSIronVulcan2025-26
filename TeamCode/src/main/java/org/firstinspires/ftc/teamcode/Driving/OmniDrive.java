@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Driving;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import java.lang.Math;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -23,9 +22,6 @@ public class OmniDrive{
          *  going from 0 degrees to 360 degrees) when going right, you'll notice that the graph is
          *  basically just cos(x + pi/4)
          */
-
-        //THIS MATH DOES NOT CHECK OUT. THE ROBOT TURNS FROM -180 to 180 DEGREES
-        rightFront = Math.cos(Math.toRadians(rightFront) + PI/4);
 
 
         //Adjust the values so that they are all between -1 and 1
@@ -64,7 +60,7 @@ public class OmniDrive{
          */
     }
 
-    public void Character_Driving(float[][] Driving, double robotDirection, DcMotor[] Wheels, Telemetry telemetry){
+    public void Character_Driving(float[][] Driving, double RADrobotDirection, DcMotor[] Wheels, Telemetry telemetry){
         double Lateral = Driving[0][0];
         double Axial = Driving[0][1];
         double Yaw = Driving[1][0];
@@ -74,13 +70,9 @@ public class OmniDrive{
         double leftBack = Axial+Lateral-Yaw;
         double rightBack = Axial-Lateral+Yaw;
 
-        leftFront =
-
-        //Please see POV drive for an explanation of this formula
-        leftFront = (((leftFront + 1)*(2))/(2))-1;
-        rightFront = (((rightFront + 1)*(2))/(2))-1;
-        leftBack = (((leftBack + 1)*(2))/(2))-1;
-        rightBack = (((rightBack + 1)*(2))/(2))-1;
+        //This here is the graph of what power values should be based on direction to go forward
+        double leftFrontDIR_goForward = Math.sin(RADrobotDirection+(PI/4));
+        
 
 
         //Set the motors to their respective power values
