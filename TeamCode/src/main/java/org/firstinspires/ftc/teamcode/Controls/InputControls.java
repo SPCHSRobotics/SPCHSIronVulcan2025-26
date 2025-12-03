@@ -10,10 +10,11 @@ public class InputControls {
                         "Rotate using the RIGHT STICK\n" +
                         "Press A (bottom, green) for shooters\n" +
                         "Press the DPAD to change shooter speed:\n" +
-                        "Left: slowest | Bottom: Normal | Right: fastest\n" +
+                        "Down: slowest | Top: fastest\n" +
                         "Press RIGHT TRIGGER to move servo\n" +
                         "Press Y (top, yellow) for intake\n" +
-                        "Press B (right, red) to change intake direction"
+                        "Press B (right, red) to change intake direction\n" +
+                        "Press X (left, COLOR) to reset gyroscope"
         );
     }
     //God forbid a man tries to use a hashmap
@@ -30,12 +31,15 @@ public class InputControls {
     public float ShooterPower = 0.45f; // By default, the power is 45%.
     public boolean ResetHeader;
     public void Update(Gamepad gamepad1, Telemetry telemetry) {
+        //Omnidrive inputs
         Driving[0][0] = gamepad1.left_stick_x;
         Driving[0][1] = gamepad1.left_stick_y;
         Driving[1][0] = gamepad1.right_stick_x;
 
+        //Servo inputs
         FireBall = gamepad1.right_trigger > 0.5;
 
+        //Intake inputs
         //We can't have the hold/touch behaviour I wanted because if we do, then the robot
         //will switch directions every time we go to hold the button.
         if (gamepad1.yWasReleased()){
@@ -46,17 +50,18 @@ public class InputControls {
             Intake[1] = !Intake[1];
         }
 
-        ResetHeader = gamepad1.xWasReleased();
-
-
+        //Shooter inputs
         if (gamepad1.dpadDownWasReleased()){
             ShooterPower = 0.45f;
-        } else if (gamepad1.dpadRightWasReleased()) {
+        } else if (gamepad1.dpadUpWasReleased()) {
             ShooterPower = 0.5f;
         }
 
         if (gamepad1.aWasReleased()){
             ShooterPower = 0;
         }
+
+        //Gyroscope inputs
+        ResetHeader = gamepad1.xWasReleased();
     }
 }
