@@ -83,11 +83,6 @@ public class Main extends LinearOpMode {
 
             //Add the "Run Time" string to telemetry and then update all telemetry
             telemetry.addData("Status: Running | Run Time: ", runtime.toString());
-            telemetry.addData("IMU Yaw: ", GyroScopeObject.GetYaw(
-                    false,
-                    RobotHardwareObject.imu,
-                    telemetry
-            ));
             telemetry.update();
         }
     }

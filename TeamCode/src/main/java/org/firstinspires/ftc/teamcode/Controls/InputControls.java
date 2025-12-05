@@ -33,7 +33,7 @@ public class InputControls {
     public void Update(Gamepad gamepad1, Telemetry telemetry) {
         //Omnidrive inputs
         Driving[0][0] = gamepad1.left_stick_x;
-        Driving[0][1] = gamepad1.left_stick_y;
+        Driving[0][1] = -gamepad1.left_stick_y;
         Driving[1][0] = gamepad1.right_stick_x;
 
         //Servo inputs

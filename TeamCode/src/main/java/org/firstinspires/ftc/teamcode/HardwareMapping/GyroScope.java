@@ -17,6 +17,6 @@ public class GyroScope {
 
         YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
 
-        return orientation.getYaw(AngleUnit.DEGREES);
+        return orientation.getYaw(AngleUnit.RADIANS);
     }
 }

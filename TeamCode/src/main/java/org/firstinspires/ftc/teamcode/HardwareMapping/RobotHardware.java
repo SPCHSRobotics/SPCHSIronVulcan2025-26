@@ -26,10 +26,10 @@ public class RobotHardware {
         Wheels[2] = hardwareMap.get(DcMotor.class, "leftBack");
         Wheels[3] = hardwareMap.get(DcMotor.class, "leftFront");
 
-        //This loop sets all of the motors to brake completely when stopped.
-        //Hopefully, this fixes the robot 'sliding around'
+        //This loop is here for convenience
         for (int i = 0; i <= 3; i = i + 1){
             Wheels[i].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            Wheels[i].setDirection(DcMotorSimple.Direction.REVERSE);
         }
 
         //The intake is in the "Shooters" array for convenience;
