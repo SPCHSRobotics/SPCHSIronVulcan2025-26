@@ -52,9 +52,9 @@ public class InputControls {
 
         //Shooter inputs
         if (gamepad1.dpadDownWasReleased()){
-            ShooterPower = 0.45f;
+            ShooterPower = 0.9f;
         } else if (gamepad1.dpadUpWasReleased()) {
-            ShooterPower = 0.5f;
+            ShooterPower = 1f;
         }
 
         if (gamepad1.aWasReleased()){

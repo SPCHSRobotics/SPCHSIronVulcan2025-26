@@ -46,13 +46,13 @@ public class Main extends LinearOpMode {
         while (opModeIsActive()) {
             // Call our functions here
             InputControlObject.Update(gamepad1, telemetry);
-            /*
+
             OmniDriveObject.POV_Driving(
                     InputControlObject.Driving,
                     RobotHardwareObject.Wheels,
                     telemetry
-            ); */
-
+            );
+            /*
             OmniDriveObject.Character_Driving(
                     InputControlObject.Driving,
                     GyroScopeObject.GetYaw(
@@ -61,11 +61,11 @@ public class Main extends LinearOpMode {
                             telemetry),
                     RobotHardwareObject.Wheels,
                     telemetry
-            );
+            ); */
 
             ShootersObject.PowerShooters(
                     InputControlObject.ShooterPower,
-                    RobotHardwareObject.Shooters,
+                    RobotHardwareObject.Shooter,
                     telemetry
             );
 

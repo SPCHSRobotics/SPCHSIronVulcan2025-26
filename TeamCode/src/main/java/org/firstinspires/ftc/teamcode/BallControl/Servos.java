@@ -7,6 +7,7 @@ public class Servos {
     public void TurnServo(boolean FireBall, Servo Pusher, Telemetry telemetry){
         if (FireBall){
             Pusher.setPosition(0.5);
+            telemetry.addLine("Firing!");
         } else {
             Pusher.setPosition(0);
         }
