@@ -9,7 +9,7 @@ public class Servos {
             Elevator.setPosition(0.5);
             telemetry.addLine("Firing!");
         } else {
-            Elevator.setPosition(0);
+            Elevator.setPosition(1);
         }
     }
 }

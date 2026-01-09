@@ -7,9 +7,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class OmniDrive{
     public void POV_Driving(float[][] Driving, DcMotor[] Wheels, Telemetry telemetry){
 
-        double Lateral = Driving[0][0];
+        double Yaw = -Driving[0][0];
         double Axial = Driving[0][1];
-        double Yaw = Driving[1][0];
+        double Lateral = -Driving[1][0];
 
 
         //Calculate what the power values should be for POV driving

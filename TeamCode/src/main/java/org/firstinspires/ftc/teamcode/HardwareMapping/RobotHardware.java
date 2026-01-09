@@ -30,8 +30,12 @@ public class RobotHardware {
         //This loop is here for convenience
         for (int i = 0; i <= 3; i = i + 1){
             Wheels[i].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            Wheels[i].setDirection(DcMotorSimple.Direction.REVERSE);
         }
+
+        Wheels[0].setDirection(DcMotorSimple.Direction.REVERSE);
+        Wheels[1].setDirection(DcMotorSimple.Direction.FORWARD);
+        Wheels[2].setDirection(DcMotorSimple.Direction.REVERSE);
+        Wheels[3].setDirection(DcMotorSimple.Direction.FORWARD);
 
         Shooter = hardwareMap.get(DcMotor.class, "shooter");
         Intake = hardwareMap.get(DcMotor.class, "input");

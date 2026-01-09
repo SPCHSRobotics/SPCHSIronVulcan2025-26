@@ -13,10 +13,16 @@ import org.firstinspires.ftc.teamcode.Driving.OmniDrive;
 import org.firstinspires.ftc.teamcode.HardwareMapping.GyroScope;
 import org.firstinspires.ftc.teamcode.HardwareMapping.RobotHardware;
 
+import org.firstinspires.ftc.teamcode.CameraVision.Camera;
+
 @TeleOp(name="Main", group="Linear OpMode")
 public class Main extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
+
+    //instantiate a new thread, which we will use for april tag detection via camera
+    Camera CameraRunnable = new Camera();
+    Thread CameraThread = new Thread(CameraRunnable);
 
     @Override
     public void runOpMode() {
@@ -38,6 +44,7 @@ public class Main extends LinearOpMode {
         Intake IntakeObject = new Intake();
         GyroScope GyroScopeObject = new GyroScope();
 
+        CameraThread.start();
 
         // Run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
@@ -82,5 +89,9 @@ public class Main extends LinearOpMode {
             telemetry.addData("Status: Running | Run Time: ", runtime.toString());
             telemetry.update();
         }
+
+        //End threads here
+        CameraRunnable.end(); //Essentially kills the thread  by not allowing anything inside of run() to execute
+        CameraThread.interrupt(); //Throws an InterruptedException to the thread, which the thread will catch
     }
 }
