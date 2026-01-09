@@ -5,16 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.BallControl.Intake;
 import org.firstinspires.ftc.teamcode.BallControl.Servos;
-import org.firstinspires.ftc.teamcode.BallControl.Shooters;
+import org.firstinspires.ftc.teamcode.BallControl.Shooter;
 import org.firstinspires.ftc.teamcode.Controls.InputControls;
 import org.firstinspires.ftc.teamcode.Driving.OmniDrive;
 import org.firstinspires.ftc.teamcode.HardwareMapping.GyroScope;
 import org.firstinspires.ftc.teamcode.HardwareMapping.RobotHardware;
-
-import java.util.PrimitiveIterator;
 
 @TeleOp(name="Main", group="Linear OpMode")
 public class Main extends LinearOpMode {
@@ -36,7 +33,7 @@ public class Main extends LinearOpMode {
         RobotHardware RobotHardwareObject = new RobotHardware(hardwareMap);
         //Load our files so that we can use the functions listed therein
         OmniDrive OmniDriveObject = new OmniDrive();
-        Shooters ShootersObject = new Shooters();
+        Shooter ShooterObject = new Shooter();
         Servos ServoObject = new Servos();
         Intake IntakeObject = new Intake();
         GyroScope GyroScopeObject = new GyroScope();
@@ -63,7 +60,7 @@ public class Main extends LinearOpMode {
                     telemetry
             ); */
 
-            ShootersObject.PowerShooters(
+            ShooterObject.PowerShooters(
                     InputControlObject.ShooterPower,
                     RobotHardwareObject.Shooter,
                     telemetry
@@ -71,7 +68,7 @@ public class Main extends LinearOpMode {
 
             ServoObject.TurnServo(
                     InputControlObject.FireBall,
-                    RobotHardwareObject.Pusher,
+                    RobotHardwareObject.Elevator,
                     telemetry
             );
 

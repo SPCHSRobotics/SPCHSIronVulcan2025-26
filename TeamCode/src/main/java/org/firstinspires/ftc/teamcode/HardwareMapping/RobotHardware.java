@@ -12,7 +12,8 @@ public class RobotHardware {
     public DcMotor[] Wheels = new DcMotor[4];
     public DcMotor Shooter;
     public DcMotor Intake;
-    public Servo Pusher;
+    public Servo Elevator;
+    public Servo CameraPedestal;
     public IMU imu;
 
 
@@ -32,17 +33,13 @@ public class RobotHardware {
             Wheels[i].setDirection(DcMotorSimple.Direction.REVERSE);
         }
 
-        //The intake is in the "Shooters" array for convenience;
-        //they are all used in the "Shooters.java" file so they're packaged together.
         Shooter = hardwareMap.get(DcMotor.class, "shooter");
-        Intake = hardwareMap.get(DcMotor.class, "intake");
+        Intake = hardwareMap.get(DcMotor.class, "input");
+        Elevator = hardwareMap.get(Servo.class, "elevator");
+        CameraPedestal = hardwareMap.get(Servo.class, "camera servo");
 
         Shooter.setDirection(DcMotorSimple.Direction.FORWARD);
-        Intake.setDirection(DcMotorSimple.Direction.REVERSE);
-
         Shooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        Pusher  = hardwareMap.get(Servo.class, "pusher");
 
         imu = hardwareMap.get(IMU.class, "imu");
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.DOWN;
