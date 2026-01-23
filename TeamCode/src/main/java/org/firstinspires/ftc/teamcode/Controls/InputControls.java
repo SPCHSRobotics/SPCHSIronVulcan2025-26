@@ -20,9 +20,9 @@ public class InputControls {
     //God forbid a man tries to use a hashmap
     public float[][] Driving = new float[2][2];
     /*
-    0 0 | Lateral
-    0 1 | Axial
-    1 0 | Yaw
+    0 0 | Lateral   | Pitch
+    0 1 | Axial     | Roll
+    1 0 | Yaw       | Yaw
      */
     public boolean FireBall;
     public boolean[] Intake = new boolean[2];

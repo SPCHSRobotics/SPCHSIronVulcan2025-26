@@ -14,6 +14,7 @@ public class RobotHardware {
     public DcMotor Intake;
     public Servo Elevator;
     public Servo CameraPedestal;
+    public Servo Pusher;
     public IMU imu;
 
 
@@ -39,15 +40,16 @@ public class RobotHardware {
 
         Shooter = hardwareMap.get(DcMotor.class, "shooter");
         Intake = hardwareMap.get(DcMotor.class, "input");
-        Elevator = hardwareMap.get(Servo.class, "elevator");
-        CameraPedestal = hardwareMap.get(Servo.class, "camera servo");
+        //Elevator = hardwareMap.get(Servo.class, "elevator");
+        //CameraPedestal = hardwareMap.get(Servo.class, "camera servo");
+        Pusher = hardwareMap.get(Servo.class, "pusher");
 
         Shooter.setDirection(DcMotorSimple.Direction.FORWARD);
         Shooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         imu = hardwareMap.get(IMU.class, "imu");
-        RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.DOWN;
-        RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
+        RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.LEFT;
+        RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.UP;
         RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection, usbDirection);
         imu.initialize(new com.qualcomm.robotcore.hardware.IMU.Parameters(orientationOnRobot));
 

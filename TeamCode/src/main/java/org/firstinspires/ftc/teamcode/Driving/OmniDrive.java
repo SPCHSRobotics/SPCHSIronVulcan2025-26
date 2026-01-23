@@ -6,11 +6,21 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class OmniDrive{
     public void POV_Driving(float[][] Driving, DcMotor[] Wheels, Telemetry telemetry){
+        /*
+        0 0 | Lateral   | Pitch
+        0 1 | Axial     | Roll
+        1 0 | Yaw       | Yaw
 
+        0 0 | leftStick x
+        0 1 | leftStick y
+        1 0 | rightStick x
+        */
+
+        //I'm not quite sure what kind of crack I was on, but this works
         double Yaw = -Driving[0][0];
         double Axial = Driving[0][1];
         double Lateral = -Driving[1][0];
-
+        //Probably the calculations bellow are messed up
 
         //Calculate what the power values should be for POV driving
         double leftFront = Axial+Lateral+Yaw;
@@ -57,6 +67,16 @@ public class OmniDrive{
 
     public void Character_Driving(float[][] Driving, double robotDirection, DcMotor[] Wheels, Telemetry telemetry){
         telemetry.addData("robotDirection/PI: ", robotDirection/Math.PI);
+
+        /*
+        0 0 | Lateral   | Pitch
+        0 1 | Axial     | Roll
+        1 0 | Yaw       | Yaw
+
+        0 0 | leftStick x   | (left to right)  -1 ->  1
+        0 1 | leftStick y   | (down to up)      1 -> -1
+        1 0 | rightStick x  | (left to right)  -1 ->  1
+        */
 
         double Lateral = Driving[0][0];
         double Axial = Driving[0][1];
@@ -112,6 +132,7 @@ public class OmniDrive{
             telemetry.addLine("ERROR. ROBOT DIRECTION OUT OF BOUNDS");
         }
 
+        //These wheels are equal when the robot is not turning. 100% confidence.
         double leftBack = rightFront;
         double rightBack = leftFront;
 
@@ -120,6 +141,11 @@ public class OmniDrive{
         leftBack *= radius;
         leftFront *= radius;
 
+        //Adding rotation to the robot:
+        rightFront = (rightFront - Yaw);    //Right wheels are negative when turning right
+        rightBack = (rightBack - Yaw);      //
+        leftBack = (leftBack + Yaw);        //Left wheels are positive when turning right
+        leftFront = (leftFront + Yaw);      //
 
         //Set the motors to their respective power values
         Wheels[0].setPower(rightFront);

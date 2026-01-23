@@ -4,12 +4,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Servos {
-    public void TurnServo(boolean FireBall, Servo Elevator, Telemetry telemetry){
+    public void TurnServo(boolean FireBall, Servo Pusher, Telemetry telemetry){
         if (FireBall){
-            Elevator.setPosition(0.5);
+            Pusher.setPosition(0);
             telemetry.addLine("Firing!");
         } else {
-            Elevator.setPosition(1);
+            Pusher.setPosition(0.4);
         }
     }
 }

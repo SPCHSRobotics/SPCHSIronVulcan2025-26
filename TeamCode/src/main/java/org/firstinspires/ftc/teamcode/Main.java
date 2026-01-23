@@ -75,7 +75,7 @@ public class Main extends LinearOpMode {
 
             ServoObject.TurnServo(
                     InputControlObject.FireBall,
-                    RobotHardwareObject.Elevator,
+                    RobotHardwareObject.Pusher,
                     telemetry
             );
 
