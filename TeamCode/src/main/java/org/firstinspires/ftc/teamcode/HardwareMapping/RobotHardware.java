@@ -11,10 +11,7 @@ public class RobotHardware {
     //Each object of the class RobotHardware shall have the following variables:
     public DcMotor[] Wheels = new DcMotor[4];
     public DcMotor Shooter;
-    public DcMotor Intake;
-    public Servo Elevator;
-    public Servo CameraPedestal;
-    public Servo Pusher;
+    public Servo[] Gate = new Servo[2];
     public IMU imu;
 
 
@@ -39,13 +36,13 @@ public class RobotHardware {
         Wheels[3].setDirection(DcMotorSimple.Direction.FORWARD);
 
         Shooter = hardwareMap.get(DcMotor.class, "shooter");
-        Intake = hardwareMap.get(DcMotor.class, "input");
-        //Elevator = hardwareMap.get(Servo.class, "elevator");
-        //CameraPedestal = hardwareMap.get(Servo.class, "camera servo");
-        Pusher = hardwareMap.get(Servo.class, "pusher");
-
         Shooter.setDirection(DcMotorSimple.Direction.FORWARD);
         Shooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        Gate[0] = hardwareMap.get(Servo.class, "gateLeft");
+        Gate[1] = hardwareMap.get(Servo.class, "gateRight");
+
+
 
         imu = hardwareMap.get(IMU.class, "imu");
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.LEFT;
