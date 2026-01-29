@@ -5,45 +5,36 @@ import java.lang.Math;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class OmniDrive{
-    public void POV_Driving(float[][] Driving, DcMotor[] Wheels, Telemetry telemetry){
-        /*
-        0 0 | Lateral   | Pitch
-        0 1 | Axial     | Roll
-        1 0 | Yaw       | Yaw
+    private double[] normalize_4_values(double[] value){
+        double[] normalizedValuesArray = new double[4];
 
+        //normalize values here
+
+        return normalizedValuesArray;
+    };
+    public void POV_Driving(double[][] Driving, DcMotor[] Wheels, Telemetry telemetry){
+        /*
+        double Driving:
         0 0 | leftStick x
         0 1 | leftStick y
         1 0 | rightStick x
-        */
 
-        //I'm not quite sure what kind of crack I was on, but this works
-        double Yaw = -Driving[0][0];
-        double Axial = Driving[0][1];
-        double Lateral = -Driving[1][0];
-        //Probably the calculations bellow are messed up
+        1) Place the robot on a table, with it's outtake closer to the ceiling than the intake.
+        2) Crouch, and look at the robot from the same side that you put the ball into it
+        3) Now imagine a regular coordinate plane behind the robot
+        */
+        double x_axis = Driving[0][0];
+        double y_axis = Driving[0][1];
+        double rotation = -(Driving[1][0]); //To rotate counterclockwise, be positive. Just like trig.
+
 
         //Calculate what the power values should be for POV driving
-        double leftFront = Axial+Lateral+Yaw;
-        double rightFront = Axial-Lateral-Yaw;
-        double leftBack = Axial-Lateral+Yaw;
-        double rightBack = Axial+Lateral-Yaw;
+        double leftFront =  y_axis + x_axis + rotation;
+        double rightFront = y_axis - x_axis - rotation;
+        double leftBack =   y_axis - x_axis + rotation;
+        double rightBack =  y_axis + x_axis - rotation;
 
 
-        //Adjust the values so that they are all between -1 and 1
-        /*
-        The function to normalize values between -1 and 1 is:
-
-        [Min Value] +
-        (
-            (
-                ([Original Value] - [Min Value]) * ([Max Value] - [Min Value])
-            )
-            /
-            (
-                ([Max Value]-[Min Value])
-            )
-        )
-         */
 
         leftFront = (((leftFront + 1)*(2))/(2))-1;
         rightFront = (((rightFront + 1)*(2))/(2))-1;

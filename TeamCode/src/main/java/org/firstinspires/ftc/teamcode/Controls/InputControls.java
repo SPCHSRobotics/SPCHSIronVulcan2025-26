@@ -16,7 +16,7 @@ public class InputControls {
         );
     }
     //God forbid a man tries to use a hashmap
-    public float[][] Driving = new float[2][2];
+    public double[][] Driving = new double[2][2];
     public boolean FireBall;
     public float Flywheel = 1.0f; // By default, the power is 100%
     public boolean ResetHeader;
