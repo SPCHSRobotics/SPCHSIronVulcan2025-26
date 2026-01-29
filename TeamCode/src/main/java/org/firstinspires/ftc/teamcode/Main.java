@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.BallControl.Shooter;
+import org.firstinspires.ftc.teamcode.BallControl.BallControl;
 import org.firstinspires.ftc.teamcode.Controls.InputControls;
 import org.firstinspires.ftc.teamcode.Driving.OmniDrive;
 import org.firstinspires.ftc.teamcode.HardwareMapping.GyroScope;
@@ -20,19 +20,21 @@ public class Main extends LinearOpMode {
     public void runOpMode() {
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData("Status", "Initialized");
+
+
         //Load our input bindings
         InputControls InputControlObject = new InputControls(telemetry);
-
-        telemetry.update();
-        waitForStart();
-        runtime.reset();
-
         //Initialize Hardware, and assign it to an object
         RobotHardware RobotHardwareObject = new RobotHardware(hardwareMap);
         //Load our files so that we can use the functions listed therein
         OmniDrive OmniDriveObject = new OmniDrive();
-        Shooter ShooterObject = new Shooter();
+        BallControl BallControlObject = new BallControl();
         GyroScope GyroScopeObject = new GyroScope();
+
+
+        telemetry.update();
+        waitForStart();
+        runtime.reset();
 
         // Run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
@@ -56,10 +58,14 @@ public class Main extends LinearOpMode {
                     telemetry
             ); */
 
-            ShooterObject.PowerShooters(
-                    InputControlObject.ShooterPower,
-                    RobotHardwareObject.Shooter,
+            BallControlObject.PowerFlywheel(
+                    InputControlObject.Flywheel,
+                    RobotHardwareObject.Flywheel,
                     telemetry
+            );
+
+            BallControlObject.Gate(
+                    RobotHardwareObject.Gate
             );
 
 

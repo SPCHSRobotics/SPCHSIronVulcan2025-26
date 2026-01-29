@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 public class RobotHardware {
     //Each object of the class RobotHardware shall have the following variables:
     public DcMotor[] Wheels = new DcMotor[4];
-    public DcMotor Shooter;
+    public DcMotor Flywheel;
     public Servo[] Gate = new Servo[2];
     public IMU imu;
 
@@ -35,12 +35,14 @@ public class RobotHardware {
         Wheels[2].setDirection(DcMotorSimple.Direction.REVERSE);
         Wheels[3].setDirection(DcMotorSimple.Direction.FORWARD);
 
-        Shooter = hardwareMap.get(DcMotor.class, "shooter");
-        Shooter.setDirection(DcMotorSimple.Direction.FORWARD);
-        Shooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Flywheel = hardwareMap.get(DcMotor.class, "shooter");
+        Flywheel.setDirection(DcMotorSimple.Direction.FORWARD);
+        Flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Gate[0] = hardwareMap.get(Servo.class, "gateLeft");
         Gate[1] = hardwareMap.get(Servo.class, "gateRight");
+        //Direction for these continious servos is not modified.
+        //^ Work with what you're given and change power values to change direction.
 
 
 
