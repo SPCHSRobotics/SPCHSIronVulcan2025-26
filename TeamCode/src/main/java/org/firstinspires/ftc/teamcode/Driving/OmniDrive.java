@@ -5,12 +5,12 @@ import java.lang.Math;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class OmniDrive{
-    private double[] normalize_4_values(double[] value){
-        double[] normalizedValuesArray = new double[4];
+    private double[] normThisArray(double[] array, double min, double max){
+        for (int i = 0; i <= array.length; i = i + 1) {
+            array[i] = ((array[i] - min) * (max - min)) / (max - min);
+        }
 
-        //normalize values here
-
-        return normalizedValuesArray;
+        return array;
     };
     public void POV_Driving(double[][] Driving, DcMotor[] Wheels, Telemetry telemetry){
         /*
@@ -28,25 +28,25 @@ public class OmniDrive{
         double rotation = -(Driving[1][0]); //To rotate counterclockwise, be positive. Just like trig.
 
 
+
+        double[] wheelArray = new double[4];
+        /*
+        3 | 0
+        2 | 1
+         */
         //Calculate what the power values should be for POV driving
-        double leftFront =  y_axis + x_axis + rotation;
-        double rightFront = y_axis - x_axis - rotation;
-        double leftBack =   y_axis - x_axis + rotation;
-        double rightBack =  y_axis + x_axis - rotation;
+        wheelArray[0] = y_axis - x_axis - rotation;
+        wheelArray[1] = y_axis + x_axis - rotation;
+        wheelArray[2] = y_axis - x_axis + rotation;
+        wheelArray[3] = y_axis + x_axis + rotation;
 
-
-
-        leftFront = (((leftFront + 1)*(2))/(2))-1;
-        rightFront = (((rightFront + 1)*(2))/(2))-1;
-        leftBack = (((leftBack + 1)*(2))/(2))-1;
-        rightBack = (((rightBack + 1)*(2))/(2))-1;
-
+        //Normalize the values
+        wheelArray = normThisArray(wheelArray, -1, 1); //Inline anon array declaration
 
         //Set the motors to their respective power values
-        Wheels[0].setPower(rightFront);
-        Wheels[1].setPower(rightBack);
-        Wheels[2].setPower(leftBack);
-        Wheels[3].setPower(leftFront);
+        for (int i = 0; i <= 3; i = i + 1){
+            Wheels[i].setPower(wheelArray[i]);
+        }
 
         /* Per-wheel telemetry:
         telemetry.addData("rightFront: ", rightFront);
